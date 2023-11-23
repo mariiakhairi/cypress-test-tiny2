@@ -1,5 +1,54 @@
 {
+  "name": "zendy-cypress-tests",
+  "version": "1.0.0",
+  "description": "Zendy Cypress automation tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "open": "cypress open",
+    "openEDS": "cypress open --env grep='-@SOLR' --config-file 'cypressEds.config.js'",
+    "openSOLR": "cypress open --env grep='-@EDS' --config-file 'cypressSOLR.config.js'",
+    "//commentFirst": "scripts to run the tests suites ex. functional, sanity, smoke, regression, acceptance",
+    "functionalEDS": "cypress run --spec 'cypress/e2e/functional/loginAndSignUp/*' 'cypress/e2e/functional/homePage/*' 'cypress/e2e/functional/subscription/*' 'cypress/e2e/functional/*' --config-file 'cypressEds.config.js' --reporter cypress-multi-reporters --reporter-options configFile=reporterOpts.json --env grep='-@SOLR' --browser chrome",
+    "functionalSOLR": "cypress run --spec 'cypress/e2e/functional/loginAndSignUp/*' 'cypress/e2e/functional/homePage/*' 'cypress/e2e/functional/subscription/*' 'cypress/e2e/functional/*' --config-file 'cypressSOLR.config.js' --reporter cypress-multi-reporters --reporter-options configFile=reporterOpts.json --env grep='-@EDS' --browser chrome",
+    "smokeEDS": "cypress run --spec 'cypress/e2e/functional/loginAndSignUp/*' 'cypress/e2e/functional/homePage/*' 'cypress/e2e/functional/subscription/*' 'cypress/e2e/functional/*' --env grep='@SMOKE; -@SOLR' --config-file 'cypressEds.config.js' --reporter cypress-multi-reporters --reporter-options configFile=reporterOpts.json --browser chrome",
+    "smokeSOLR": "cypress run --spec 'cypress/e2e/functional/loginAndSignUp/*' 'cypress/e2e/functional/homePage/*' 'cypress/e2e/functional/subscription/*' 'cypress/e2e/functional/*' --env grep='@SMOKE; -@EDS' --config-file 'cypressSOLR.config.js' --reporter cypress-multi-reporters --reporter-options configFile=reporterOpts.json --browser chrome",
+    "singleEDS": "cypress run --spec 'cypress/e2e/functional/permaPage.cy.js' --config-file 'cypressEds.config.js'  --env grep='-@SOLR' --browser chrome --headed --reporter cypress-multi-reporters --reporter-options configFile=reporterOpts.json",
+    "singleSOLR": "cypress run --spec 'cypress/e2e/functional/loginAndSignUp/signUpForm.cy.js' --config-file 'cypressSOLR.config.js' --env grep='-@EDS' --browser chrome --headed",
+    "sanity": "cypress run --spec 'cypress/e2e/sanity/*' --reporter cypress-multi-reporters --reporter-options configFile=reporterOpts.json",
+    "sanityStage": "cypress run --spec 'cypress/e2e/sanityStaging/*'",
+    "dataRegression": "cypress run --spec 'cypress/e2e/dataTesting/dataRegression.cy.js' 'cypress/e2e/dataTesting/dataTypes.cy.js' 'cypress/e2e/dataTesting/publicationTitle.cy.js'",
+    "dataAcceptance": "cypress run --spec 'cypress/e2e/dataTesting/TCM473.cy.js' 'cypress/e2e/dataTesting/fieldSource.cy.js'",
+    "api": "cypress run --spec 'cypress/e2e/api/*' 'cypress/e2e/api/*/*' --reporter cypress-multi-reporters --reporter-options configFile=reporterOpts.json",
+    "//commentSecond": "scripts for reports",
+    "mergeMochaReports": "npx mochawesome-merge ./cypress/reports/mocha/*.json -o ./cypress/reports/mocha/output.json",
+    "reportGenerate": "marge ./cypress/reports/mocha/output.json -o cypress/reports/html",
+    "slackFunctionalEds": "node slackFunctionalEds.js",
+    "slackFunctionalSolr": "node slackFunctionalSolr.js",
+    "slackSmokeEds": "node slackSmokeEds.js",
+    "slackSmokeSolr": "node slackSmokeSolr.js",
+    "slackSanity": "node slackSanity.js",
+    "slackApiTest": "node slackApiTest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\t"
+  },
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.17.2"
+    "@cypress/xpath": "^2.0.3",
+    "cypress": "^12.17.2",
+    "cypress-multi-reporters": "^1.6.3"
+  },
+  "dependencies": {
+    "@cypress/grep": "^3.1.3",
+    "cypress-lighthouse": "^0.1.0",
+    "cypress-wait-until": "^1.7.2",
+    "isomorphic-fetch": "^3.0.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "pg": "^8.10.0"
   }
 }

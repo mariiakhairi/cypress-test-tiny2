@@ -1,0 +1,6 @@
+{
+  "LL": ["0: No license available", "1: Gold OA", "2: NC OA but licensed for use on Zendy", "3: NC OA which is non-licensed", "4: Premium data"],
+  "SOLRquery": ["title", "abstract", "authors", "ISBN", "eISSN", "pISSN","publication_type", "-title", "-abstract", "-authors", "-ISBN", "-eISSN", "-pISSN","-publication_type", "-is_premium", "-oa_status", "oa_status"],
+  "publicationType" :["Journals", "Others", "\"Conference Proceedings\"", "\"Book Series\"", "\"Dissertations/Theses\"", "Reports", "Reviews", "\"Primary Source Documents\"", "News", "Reference", "Undefined"],
+  "other" : ["is_premium%3Atrue", "is_premium%3Afalse"]
+}
